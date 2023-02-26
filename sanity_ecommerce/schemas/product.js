@@ -28,7 +28,7 @@ export default {
     },
     {
       name: 'price',
-      title: 'Price',
+      title: 'Price by meter',
       type: 'number',
     },
     {
