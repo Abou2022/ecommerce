@@ -3,7 +3,7 @@ import Link from "next/link";
 import { urlFor } from "@/lib/client";
 
 const FooterBanner = ({
-  FooterBanner: {
+  footerBanner: {
     discount,
     largeText1,
     largeText2,

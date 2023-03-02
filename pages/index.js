@@ -6,7 +6,7 @@ import banner from "@/sanity_ecommerce/schemas/banner";
 const Home = ({ products, bannerData }) => {
   return (
     <>
-      <HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
+      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className="products-heading">
         <h2>Best Selling Products</h2>
         <p>Bazin for man and women</p>
@@ -16,7 +16,7 @@ const Home = ({ products, bannerData }) => {
           <Product key={product._id} product={product} />
         ))}
       </div>
-      <FooterBanner FooterBanner={bannerData && bannerData[0]} />
+      <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>
   );
 };
