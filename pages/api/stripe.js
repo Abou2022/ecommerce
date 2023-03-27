@@ -23,7 +23,7 @@ export default async function handler(req, res) {
             quantity: 1,
           },
         ],
-        line_items: req.body.cartItems.map((item) => {
+        line_items: req.body.map((item) => {
           const img = item.image[0].asset._ref;
           const newImage = img
             .replace(
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
           return {
             price_data: {
               currency: "usd",
-              production_data: {
+              product_data: {
                 name: item.name,
                 images: [newImage],
               },
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
             },
             adjustable_quantity: {
               enabled: true,
-              minmum: 1,
+              minimum: 1,
             },
             quantity: item.quantity,
           };
