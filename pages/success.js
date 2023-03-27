@@ -6,7 +6,17 @@ import { useRouter } from "next/router";
 import { useStateContext } from "@/context/StateContext";
 
 const success = () => {
-  return <div>success</div>;
+  const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
+  const [order, setOrder] = useState(null);
+  return (
+    <div className="success-wrapper">
+      <div className="success">
+        <p className="icon">
+          <BsBagCheckFill />
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default success;
