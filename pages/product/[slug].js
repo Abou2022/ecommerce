@@ -12,9 +12,16 @@ import { Product } from "@/components";
 import { useStateContext } from "../../context/StateContext";
 
 const ProductDetails = ({ product, products }) => {
+  // if (!product) {
+  //   return <div>Loading...</div>;
+  // }
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
-  const { decQty, incQty, qty, onAdd } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+  const handleBuyNow = () => {
+    onAdd(product, qty);
+    setShowCart(true);
+  };
 
   return (
     <div>
@@ -34,7 +41,7 @@ const ProductDetails = ({ product, products }) => {
                 className={
                   i === index ? "samll-image selected-image" : "samll-image"
                 }
-                onMousseEnter={() => setIndex(i)}
+                // onMousseEnter={() => setIndex(i)}
               />
             ))}
           </div>
@@ -61,9 +68,7 @@ const ProductDetails = ({ product, products }) => {
               <span className="minus" onClick={decQty}>
                 <AiOutlineMinus />
               </span>
-              <span className="num" onClick="">
-                {qty}
-              </span>
+              <span className="num">{qty}</span>
               <span className="plus" onClick={incQty}>
                 <AiOutlinePlus />
               </span>
@@ -77,7 +82,7 @@ const ProductDetails = ({ product, products }) => {
             >
               Add to Cart
             </button>
-            <button type="button" className="buy-now" onClick="">
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
               Buy Now
             </button>
           </div>
@@ -121,7 +126,6 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const productsQuery = '*[_type == "product"]';
 
   const product = await client.fetch(query);
-
   const products = await client.fetch(productsQuery);
 
   return {
