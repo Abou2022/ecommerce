@@ -242,6 +242,8 @@ span.text-red {
 }
 .footer-banner-image {
   position: absolute;
+  /* width: 300;
+  height: 300; */
   /* top: -35%;
   left: 8%; */
   top: -25%;
