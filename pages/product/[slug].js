@@ -15,6 +15,7 @@ const ProductDetails = ({ product, products }) => {
   // if (!product) {
   //   return <div>Loading...</div>;
   // }
+
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
@@ -29,7 +30,8 @@ const ProductDetails = ({ product, products }) => {
         <div>
           <div className="image-container">
             <img
-              src={urlFor(image && image[index])}
+              // src={urlFor(image && image[index])}
+              src={image && urlFor(image[index]).url()}
               className="product-detail-image"
             />
           </div>
