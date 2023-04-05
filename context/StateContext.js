@@ -15,12 +15,16 @@ export const StateContext = ({ children }) => {
   let index;
 
   const onAdd = (product, quantity) => {
+    // if (!product) {
+    //   return;
+    // }
+
     const checkProductInCart = cartItems.find(
       (item) => item._id === product._id
     );
 
     setTotalPrice(
-      (prevTotalPrice) => prevTotalPrice + product.price * quantity
+      (prevTotalPrice) => prevTotalPrice + product.price * quantity || 0
     );
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
@@ -33,12 +37,20 @@ export const StateContext = ({ children }) => {
           };
       });
       setCartItems(updatedCartItems);
-    } else {
-      product.quantity = quantity;
+      //   } else {
+      //     product.quantity = quantity;
 
-      setCartItems([...cartItems, { ...product }]);
+      //     setCartItems([...cartItems, { ...product }]);
+      //   }
+      //   toast.success(`${qty} ${product.name} added to the cart.`);
+      // };
+    } else {
+      if (product) {
+        product.quantity = quantity;
+        setCartItems([...cartItems, { ...product }]);
+        toast.success(`${qty} ${product.name} added to the cart.`);
+      }
     }
-    toast.success(`${qty} ${product.name} added to the cart.`);
   };
 
   const onRemove = (product) => {

@@ -12,11 +12,9 @@ import { Product } from "@/components";
 import { useStateContext } from "../../context/StateContext";
 
 const ProductDetails = ({ product, products }) => {
-  // if (!product) {
-  //   return <div>Loading...</div>;
-  // }
+  // const { image, name, details, price } = product;
+  const { image, name, details, price } = product || {};
 
-  const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
   const handleBuyNow = () => {
@@ -35,18 +33,6 @@ const ProductDetails = ({ product, products }) => {
               className="product-detail-image"
             />
           </div>
-          {/* <div className="small-images-container">
-            {image?.map((item, i) => (
-              <img
-                key={i}
-                src={urlFor(item)}
-                className={
-                  i === index ? "samll-image selected-image" : "samll-image"
-                }
-                // onMousseEnter={() => setIndex(i)}
-              />
-            ))}
-          </div> */}
         </div>
 
         <div className="product-detail-desc">
@@ -103,14 +89,12 @@ const ProductDetails = ({ product, products }) => {
     </div>
   );
 };
-
 export const getStaticPaths = async () => {
   const query = `*[_type == "product"]{
 slug{
                     current
 }
 }`;
-
   const products = await client.fetch(query);
   const paths = products.map((product) => ({
     params: {
